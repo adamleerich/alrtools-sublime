@@ -1,0 +1,22 @@
+alrtools-sublime
+Copyright 2026 Adam L. Rich
+
+This product is a derivative work of SublimeTableEditor
+(https://github.com/vkocubinsky/SublimeTableEditor), a Sublime Text package
+for editing text tables.
+
+SublimeTableEditor
+Copyright 2012-2016 Valery Kocubinsky and contributors
+Licensed under the Apache License, Version 2.0.
+
+Derived from upstream commit 327d9d5 ("Change license from GPL to Apache 2").
+
+Changes made in this derivative work:
+  * Removed the interactive table editor (navigation, row/column insert,
+    delete and move, split/join, CSV conversion, per-view toggles) and all
+    table syntaxes other than GitHub Flavored Markdown pipe tables.
+  * Replaced the table model and parser with a single pure-Python formatter
+    (markdown_table.py) and one Sublime Text command
+    (markdown_table_format.py).
+  * Replaced the hand-written wide-character ranges with unicodedata.
+  * Ported to Sublime Text 4 / Python 3.8 and removed Python 2 code.

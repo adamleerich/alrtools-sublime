@@ -3,46 +3,35 @@
         "caption": "Preferences",
         "mnemonic": "n",
         "id": "preferences",
-        "children":
-        [
+        "children": [
             {
                 "caption": "Package Settings",
                 "mnemonic": "P",
                 "id": "package-settings",
-                "children":
-                [
+                "children": [
                     {
-                        "caption": "Table Editor",
-                        "children":
-                        [
+                        "caption": "alrtools",
+                        "children": [
                             {
+                                "caption": "README",
                                 "command": "open_file",
-                                "args": {"file": "${packages}/Table Editor/README.md"},
-                                "caption": "README"
+                                "args": { "file": "${packages}/alrtools-sublime/README.md" }
                             },
                             {
-                                "command": "open_file",
+                                "caption": "Settings",
+                                "command": "edit_settings",
                                 "args": {
-                                    "file": "${packages}/Table Editor/Default (OSX).sublime-keymap",
-                                    "platform": "OSX"
-                                },
-                                "caption": "Key Bindings – Default"
+                                    "base_file": "${packages}/alrtools-sublime/alrtools-sublime.sublime-settings",
+                                    "default": "// Settings in here override the package defaults.\n{\n\t$0\n}\n"
+                                }
                             },
                             {
-                                "command": "open_file",
+                                "caption": "Key Bindings",
+                                "command": "edit_settings",
                                 "args": {
-                                    "file": "${packages}/Table Editor/Default (Linux).sublime-keymap",
-                                    "platform": "Linux"
-                                },
-                                "caption": "Key Bindings – Default"
-                            },
-                            {
-                                "command": "open_file",
-                                "args": {
-                                    "file": "${packages}/Table Editor/Default (Windows).sublime-keymap",
-                                    "platform": "Windows"
-                                },
-                                "caption": "Key Bindings – Default"
+                                    "base_file": "${packages}/alrtools-sublime/Default.sublime-keymap",
+                                    "default": "[\n\t$0\n]\n"
+                                }
                             }
                         ]
                     }

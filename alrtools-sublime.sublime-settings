@@ -1,0 +1,8 @@
+{
+    // Right-align columns whose body cells are all numbers
+    // (unless the delimiter row sets an alignment with colons).
+    "align_numbers_right": true,
+
+    // Center the header row of a table that has a delimiter row.
+    "center_header": true
+}

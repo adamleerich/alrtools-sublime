@@ -1,0 +1,10 @@
+[
+    // Format the pipe table under the cursor. Change the key to taste.
+    {
+        "keys": ["ctrl+alt+f"],
+        "command": "markdown_table_format",
+        "context": [
+            { "key": "selector", "operator": "equal", "operand": "text.html.markdown" }
+        ]
+    }
+]
