@@ -23,6 +23,13 @@ becomes
 
 Clone or copy this folder into your Sublime Text `Packages` directory
 (*Preferences → Browse Packages…*) as `alrtools-sublime`.
+The restart Sublime Text.
+
+```bat
+cd "%appdata%\Sublime Text\Packages"
+git clone https://github.com/adamleerich/alrtools-sublime.git
+```
+
 
 ## Use
 
