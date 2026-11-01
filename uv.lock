@@ -10,25 +10,12 @@ source = { virtual = "." }
 [package.dev-dependencies]
 dev = [
     { name = "ruff" },
-    { name = "sublime" },
 ]
 
 [package.metadata]
 
 [package.metadata.requires-dev]
-dev = [
-    { name = "ruff", specifier = ">=0.17.3" },
-    { name = "sublime", specifier = ">=0.1.0" },
-]
-
-[[package]]
-name = "click"
-version = "3.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/15/0f/9070074d2bdabf216f99b922a5c85ef1bfc304236086d3bf77c6b35eacfc/click-3.3.tar.gz", hash = "sha256:f79c8c04d7eb50071bcad67fd23f3c10fab6c72d56857adf848367806845d6e5", size = 259855, upload-time = "2014-09-07T21:40:41.056Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b7/21/ce45306a697fc80ebe0b73ce04ecc08c54488b2dbe74babc068959683fd5/click-3.3-py2.py3-none-any.whl", hash = "sha256:c9972f4d2b80575bb9112500cfec750eaf4f04e07abda4b2c44e453cde65ee77", size = 58750, upload-time = "2014-09-07T21:40:44.913Z" },
-]
+dev = [{ name = "ruff", specifier = ">=0.17.3" }]
 
 [[package]]
 name = "ruff"
@@ -54,12 +41,3 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/d0/a0/f08c1631bfd81faa6a90eaf70c37c786c11bed2046302b56bb506c25e1a0/ruff-0.17.3-py3-none-win_amd64.whl", hash = "sha256:56b8ffb3f3b3cbccb8b76b71b38261b7ed982ef5d20f5b447b1b61a7f4949b24", size = 10341333, upload-time = "2026-10-27T00:34:02.099Z" },
     { url = "https://files.pythonhosted.org/packages/99/d5/4ad4ed31413c301430918e70d3d38ae6f097af0766cb9ab8c9d502b2a4d6/ruff-0.17.3-py3-none-win_arm64.whl", hash = "sha256:81fce74bcd6be0e9da7c67c7553fd0f1f12964a2052cd728ef917b937a5ca1d9", size = 9854332, upload-time = "2026-10-27T00:34:03.847Z" },
 ]
-
-[[package]]
-name = "sublime"
-version = "0.1.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "click" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/54/f0/4c22e7d2ed46ed6476c24940505c14527a2f363493f78406fd7353444dd7/sublime-0.1.0.tar.gz", hash = "sha256:c4de74c75256421ce3514083f3d43fbc681cfa2dcebe332c2da3a671a9fa926b", size = 7187, upload-time = "2015-03-27T16:39:49.229Z" }
