@@ -1,7 +1,26 @@
 # alrtools-sublime
 
+
+## Credits and license
+
+This package is derived from
+[SublimeTableEditor](https://github.com/vkocubinsky/SublimeTableEditor) by
+**Valery Kocubinsky** and contributors, whose work this builds on. The
+original is no longer maintained; this version keeps only the Markdown table
+formatting.
+
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) and
+[NOTICE](NOTICE).
+
+
+
+## Intro
+
 A small personal Sublime Text 4 package. For now it does one thing: re-format
 GitHub Flavored Markdown (GFM) pipe tables so the columns line up.
+
+
+
 
 ```markdown
 | Name | Age | Notes |
@@ -18,6 +37,7 @@ becomes
 | Alice |  21 | likes tea |
 | Bob   | 105 |     x     |
 ```
+
 
 ## Install
 
@@ -40,6 +60,8 @@ Palette. Every cursor is handled, and each cursor stays in the same cell.
 To change the key, use *Preferences → Package Settings → alrtools →
 Key Bindings*.
 
+
+
 ## Behavior
 
 - Columns are padded to the widest cell (minimum width 3).
@@ -56,30 +78,22 @@ Limitations: a table row must start with `|`, pipes inside a cell must be
 escaped as `\|`, and other table dialects (Pandoc grid tables, MultiMarkdown
 column spans, etc.) are not supported.
 
+
+
 ## Settings
 
 `alrtools-sublime.sublime-settings`:
 
-| Setting               | Default | Meaning                                         |
-| --------------------- | :-----: | ----------------------------------------------- |
+|        Setting        | Default |                     Meaning                      |
+| --------------------- | :-----: | ------------------------------------------------ |
 | `align_numbers_right` |  true   | Right-align all-numeric columns without a marker |
-| `center_header`       |  true   | Center the header row                           |
+| `center_header`       |  true   | Center the header row                            |
 
 ## Tests
 
 The formatter is plain Python and needs no Sublime Text:
 
-```
+```bat
 python -m unittest discover -s tests -v
 ```
 
-## Credits and license
-
-This package is derived from
-[SublimeTableEditor](https://github.com/vkocubinsky/SublimeTableEditor) by
-**Valery Kocubinsky** and contributors, whose work this builds on. The
-original is no longer maintained; this version keeps only the Markdown table
-formatting.
-
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) and
-[NOTICE](NOTICE).

@@ -9,9 +9,9 @@ import os
 import sys
 import unittest
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+import markdown_table as mdt
 
-import markdown_table as mdt  # noqa: E402
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 
 def fmt(text, **kwargs):
@@ -19,7 +19,6 @@ def fmt(text, **kwargs):
 
 
 class FormatTableTest(unittest.TestCase):
-
     def test_basic_header_centered_numbers_right(self):
         unformatted = """
 | Name | Gender | Age |
@@ -51,9 +50,11 @@ class FormatTableTest(unittest.TestCase):
 
     def test_center_header_off(self):
         unformatted = "| A | Long header |\n|---|---|\n| wide cell value | x |"
-        expected = ("| A               | Long header |\n"
-                    "| --------------- | ----------- |\n"
-                    "| wide cell value | x           |")
+        expected = (
+            "| A               | Long header |\n"
+            "| --------------- | ----------- |\n"
+            "| wide cell value | x           |"
+        )
         self.assertEqual(expected, fmt(unformatted, center_header=False))
 
     def test_explicit_alignment_markers_are_kept(self):
@@ -84,38 +85,35 @@ class FormatTableTest(unittest.TestCase):
 
     def test_short_rows_are_padded(self):
         unformatted = "| a | b | c |\n|---|---|---|\n| 1 |\n| 1 | 2 |"
-        expected = ("|  a  |  b  |  c  |\n"
-                    "| --- | --- | --- |\n"
-                    "|   1 |     |     |\n"
-                    "|   1 |   2 |     |")
+        expected = (
+            "|  a  |  b  |  c  |\n"
+            "| --- | --- | --- |\n"
+            "|   1 |     |     |\n"
+            "|   1 |   2 |     |"
+        )
         self.assertEqual(expected, fmt(unformatted))
 
     def test_row_without_closing_pipe(self):
-        self.assertEqual("|  a  |  b  |\n| --- | --- |\n|   1 |   2 |",
-                         fmt("| a | b |\n|---|---|\n| 1 | 2"))
+        self.assertEqual(
+            "|  a  |  b  |\n| --- | --- |\n|   1 |   2 |",
+            fmt("| a | b |\n|---|---|\n| 1 | 2"),
+        )
 
     def test_escaped_pipe_stays_inside_cell(self):
         unformatted = "| a | b |\n|---|---|\n| x \\| y | z |"
-        expected = ("|   a    |  b  |\n"
-                    "| ------ | --- |\n"
-                    "| x \\| y | z   |")
+        expected = "|   a    |  b  |\n| ------ | --- |\n| x \\| y | z   |"
         self.assertEqual(expected, fmt(unformatted))
 
     def test_wide_characters_use_two_columns(self):
         unformatted = "| name |\n|---|\n| 王小明 |\n| abcdef |"
-        expected = ("|  name  |\n"
-                    "| ------ |\n"
-                    "| 王小明 |\n"
-                    "| abcdef |")
+        expected = "|  name  |\n| ------ |\n| 王小明 |\n| abcdef |"
         self.assertEqual(expected, fmt(unformatted))
         self.assertEqual(6, mdt.display_width("王小明"))
         self.assertEqual(1, mdt.display_width("é"))  # combining accent
 
     def test_indented_table_keeps_indent(self):
         unformatted = "  | a | b |\n  |---|---|\n  | 1 | 2 |"
-        expected = ("  |  a  |  b  |\n"
-                    "  | --- | --- |\n"
-                    "  |   1 |   2 |")
+        expected = "  |  a  |  b  |\n  | --- | --- |\n  |   1 |   2 |"
         self.assertEqual(expected, fmt(unformatted))
 
     def test_without_delimiter_row_nothing_is_header(self):
@@ -154,8 +152,8 @@ class CursorHelpersTest(unittest.TestCase):
     def test_field_at(self):
         self.assertEqual(0, mdt.field_at(self.LINE, 0))
         self.assertEqual(0, mdt.field_at(self.LINE, 3))
-        self.assertEqual(0, mdt.field_at(self.LINE, 6))   # before 2nd pipe
-        self.assertEqual(1, mdt.field_at(self.LINE, 7))   # after 2nd pipe
+        self.assertEqual(0, mdt.field_at(self.LINE, 6))  # before 2nd pipe
+        self.assertEqual(1, mdt.field_at(self.LINE, 7))  # after 2nd pipe
         self.assertEqual(2, mdt.field_at(self.LINE, 15))
         self.assertEqual(2, mdt.field_at(self.LINE, len(self.LINE)))
 

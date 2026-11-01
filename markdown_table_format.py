@@ -74,8 +74,9 @@ class MarkdownTableFormatCommand(sublime_plugin.TextCommand):
         for caret in carets:
             if caret[0] == "keep":
                 (ra, ca), (rb, cb) = caret[1], caret[2]
-                regions.append(sublime.Region(view.text_point(ra, ca),
-                                              view.text_point(rb, cb)))
+                regions.append(
+                    sublime.Region(view.text_point(ra, ca), view.text_point(rb, cb))
+                )
             else:
                 _, row, field, first, last = caret
                 new_line = tables[(first, last)][row - first]
@@ -85,8 +86,10 @@ class MarkdownTableFormatCommand(sublime_plugin.TextCommand):
         view.sel().add_all(regions)
 
         count = len(tables)
-        sublime.status_message(STATUS_PREFIX + "formatted {0} table{1}".format(
-            count, "" if count == 1 else "s"))
+        sublime.status_message(
+            STATUS_PREFIX
+            + "formatted {0} table{1}".format(count, "" if count == 1 else "s")  # noqa: UP030
+        )
 
     def _line_text(self, row):
         return self.view.substr(self.view.line(self.view.text_point(row, 0)))
