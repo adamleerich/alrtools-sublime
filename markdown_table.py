@@ -84,7 +84,7 @@ def _pipe_positions(line: str) -> List[int]:
 def split_row(line: str) -> Tuple[str, List[str]]:
     """Split a table row into (indentation, stripped cell texts)."""
     body = line.lstrip()
-    prefix = line[:len(line) - len(body)]
+    prefix = line[: len(line) - len(body)]
     cells = []  # type: List[str]
     start = 0
     positions = _pipe_positions(body)
@@ -131,9 +131,9 @@ def _delimiter_cell(align: Optional[str], width: int) -> str:
     return "-" * width
 
 
-def format_table(lines: List[str],
-                 align_numbers_right: bool = True,
-                 center_header: bool = True) -> List[str]:
+def format_table(
+    lines: List[str], align_numbers_right: bool = True, center_header: bool = True
+) -> List[str]:
     """Return the lines of a pipe table, aligned and padded.
 
     The number of lines never changes. Short rows are padded with empty
@@ -146,7 +146,7 @@ def format_table(lines: List[str],
     if not lines:
         return []
 
-    prefix = lines[0][:len(lines[0]) - len(lines[0].lstrip())]
+    prefix = lines[0][: len(lines[0]) - len(lines[0].lstrip())]
     rows = [split_row(line)[1] for line in lines]
     column_count = max(len(r) for r in rows)
     if column_count == 0:
@@ -171,7 +171,9 @@ def format_table(lines: List[str],
         widths.append(max([MIN_COLUMN_WIDTH] + [display_width(c) for c in cells]))
         align = explicit[col]
         if align is None:
-            body = [rows[i][col] for i in body_rows if col < len(rows[i]) and rows[i][col]]
+            body = [
+                rows[i][col] for i in body_rows if col < len(rows[i]) and rows[i][col]
+            ]
             numeric = bool(body) and all(_NUMBER.match(c) for c in body)
             align = RIGHT if (align_numbers_right and numeric) else LEFT
         alignment.append(align)
@@ -179,12 +181,17 @@ def format_table(lines: List[str],
     out = []
     for i, row in enumerate(rows):
         if i == delimiter_index:
-            cells = [_delimiter_cell(explicit[c], widths[c]) for c in range(column_count)]
+            cells = [
+                _delimiter_cell(explicit[c], widths[c]) for c in range(column_count)
+            ]
         else:
             is_header = delimiter_index is not None and i == 0 and center_header
             cells = [
-                _pad(row[c] if c < len(row) else "", widths[c],
-                     CENTER if is_header else alignment[c])
+                _pad(
+                    row[c] if c < len(row) else "",
+                    widths[c],
+                    CENTER if is_header else alignment[c],
+                )
                 for c in range(column_count)
             ]
         out.append(prefix + "| " + " | ".join(cells) + " |")
@@ -208,7 +215,7 @@ def cursor_column(line: str, field: int) -> int:
         return len(line)
     field = max(0, min(field, len(positions) - 2))
     left, right = positions[field], positions[field + 1]
-    content = line[left + 1:right].rstrip()
+    content = line[left + 1 : right].rstrip()
     if content.strip():
         return left + 1 + len(content)
     return left + 2
