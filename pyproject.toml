@@ -9,3 +9,10 @@ dev = [
     "ruff>=0.17.3",
     "sublime>=0.1.0",
 ]
+
+# [tool.ruff]
+# extend-exclude = ["markdown_table_format.py"]
+
+
+[tool.ty.src]
+exclude = ["markdown_table_format.py"]
